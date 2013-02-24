@@ -14,6 +14,10 @@
   ],
   "author": "Artur Monteiro <amonteiro@orkesta.es>",
   "license": "BSD",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rybnik/waver.git"
+  },
   "dependencies": {
     "async": "~0.2.5"
   }
