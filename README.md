@@ -1,5 +1,6 @@
 # Installing waver
 To install your super-duper wave reader into your node.js aplication just run the following:
+
         npm install waver
         
 
