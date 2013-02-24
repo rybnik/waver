@@ -5,7 +5,7 @@ To install your super-duper wave reader into your node.js aplication just run th
         
 
 # Simple usage
-You will need an audio buffer (only WAVE PCM without compression is supported at this time). The following example will sample code should get you started:
+You will need an audio buffer (only WAVE PCM without compression is supported at this time). The following sample code should get you started:
 
     var waver = require('waver');
     
