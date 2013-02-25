@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Waver by rybnik</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Waver</h1>
+        <p>Fast wave-pcm reader for Node.js applications. </p>
+
+        <p class="view"><a href="https://github.com/rybnik/waver">View the Project on GitHub <small>rybnik/waver</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/rybnik/waver/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/rybnik/waver/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/rybnik/waver">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1> Installing waver</h1>
+
+<p>To install your super-duper wave reader into your node.js aplication just run the following:</p>
+
+<p><code>npm install waver</code></p>
+
+<h1>Simple usage</h1>
+
+<p>You will need an audio buffer (only WAVE PCM without compression is supported at this time). The following sample code should get you started:</p>
+
+<div class="highlight"><pre>    <span class="kd">var</span> <span class="nx">waver</span>        <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'waver'</span><span class="p">);</span>
+    <span class="kd">var</span> <span class="nx">audioBuffer</span>  <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'fs'</span><span class="p">).</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s1">'pathToYourFile'</span><span class="p">);</span>
+
+    <span class="nx">waver</span><span class="p">.</span><span class="nx">readRaw</span><span class="p">(</span><span class="nx">audioBuffer</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span><span class="nx">wave</span><span class="p">){</span> 
+
+      <span class="k">if</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">'Error: '</span><span class="p">,</span> <span class="nx">e</span><span class="p">);</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">wave</span><span class="p">);</span>
+
+    <span class="p">});</span>
+</pre></div>
+
+<p>This will output the following JSON structure:</p>
+
+<div class="highlight"><pre><span class="p">{</span> <span class="nx">RIFFChunk</span><span class="o">:</span> <span class="p">{</span> <span class="nx">ChunkID</span><span class="o">:</span> <span class="s1">'RIFF'</span><span class="p">,</span> <span class="nx">Format</span><span class="o">:</span> <span class="s1">'WAVE'</span><span class="p">,</span> <span class="nx">ChunkSize</span><span class="o">:</span> <span class="mi">17147876</span> <span class="p">},</span>
+  <span class="nx">FormatChunk</span><span class="o">:</span> 
+   <span class="p">{</span> <span class="nx">Subchunk1ID</span><span class="o">:</span> <span class="s1">'fmt '</span><span class="p">,</span>
+     <span class="nx">Subchunk1Size</span><span class="o">:</span> <span class="mi">16</span><span class="p">,</span>
+     <span class="nx">AudioFormat</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+     <span class="nx">NumChannels</span><span class="o">:</span> <span class="mi">1</span><span class="p">,</span>
+     <span class="nx">SampleRate</span><span class="o">:</span> <span class="mi">8000</span><span class="p">,</span>
+     <span class="nx">ByteRate</span><span class="o">:</span> <span class="mi">16000</span><span class="p">,</span>
+     <span class="nx">BlockAlign</span><span class="o">:</span> <span class="mi">2</span><span class="p">,</span>
+     <span class="nx">BitsPerSample</span><span class="o">:</span> <span class="mi">16</span> <span class="p">},</span>
+  <span class="nx">DataChunk</span><span class="o">:</span> 
+   <span class="p">{</span> <span class="nx">Subchunk2ID</span><span class="o">:</span> <span class="s1">'data'</span><span class="p">,</span>
+     <span class="nx">Subchunk2Size</span><span class="o">:</span> <span class="mi">17147840</span><span class="p">,</span>
+     <span class="nx">Data</span><span class="o">:</span> <span class="o">&lt;</span><span class="nx">Buffer</span> <span class="mi">08</span> <span class="mi">00</span> <span class="mi">08</span> <span class="mi">00</span> <span class="mi">08</span> <span class="mi">00</span>  <span class="p">...</span><span class="o">&gt;</span> <span class="p">}</span> <span class="p">}</span>
+</pre></div>
+
+<p>Instead of <code>readRaw</code> you can use the <code>read</code> method to return an aditional element with the audio data in a numeric form.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/rybnik">rybnik</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
